@@ -89,6 +89,10 @@ class _MessagesPageState extends State<MessagesPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                FloatingActionButton(onPressed: () {
+                  final authAPI = Provider.of<AuthAPI>(context, listen: false);
+                  authAPI.trigFun();
+                }),
                 authStatus == AuthStatus.authenticated
                     ? Row(
                         children: [
