@@ -15,7 +15,8 @@ export default async ({ req, res, log, error }) => {
         // Send a response with the res object helpers
         return res.send(`ciao ${process.env.DOG_NAME}`);
     } else if (req.method === 'POST') {
-        // Create a document in the specified collection
+      return res.send('funzia?');
+        /*// Create a document in the specified collection
         let promise = databases.createDocument(
             process.env.APPWRITE_DATABASE_ID,
             process.env.APPWRITE_USERINFO_ID,
@@ -34,13 +35,13 @@ export default async ({ req, res, log, error }) => {
             console.log(error);
             return res.send(`errorre cazzo`);
             //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
-        });
+        });*/
     }
 
-    /*return res.json({
+    return res.json({
         motto: 'Build like a team of hundreds_',
         learn: 'https://appwrite.io/docs',
         connect: 'https://appwrite.io/discord',
         getInspired: 'https://builtwith.appwrite.io',
-    });*/
+    });
 };
