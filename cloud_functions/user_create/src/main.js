@@ -20,7 +20,7 @@ export default async ({ req, res, log, error }) => {
     return res.send(`hello ${process.env.DOG_NAME}`);
   } else if (req.method === 'POST') {
     /// Create a document in the specified collection
-    const promise = databases.createDocument(
+    const promise = await databases.createDocument(
       process.env.APPWRITE_DATABASE_ID,
       process.env.APPWRITE_USERINFO_ID,
       ID.unique(),
