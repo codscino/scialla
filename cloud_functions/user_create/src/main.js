@@ -25,24 +25,22 @@ export default async ({ req, res, log, error }) => {
         process.env.APPWRITE_DATABASE_ID,
         process.env.APPWRITE_USERINFO_ID,
         ID.unique(),
-        { name: 'barbone' },
+        { name: '' },
         [
           Permission.write(Role.any()),
           //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
         ]
       );
 
-      log('qui');
       console.log(response);
       return res.send('document created');
+
     } catch (err) {
-      log('quo');
       console.log(err);
       return res.send('document not created, internal error');
     }
   }
 
-  log('qua');
   return res.json({
     motto: 'Build like a team of hundreds_',
     learn: 'https://appwrite.io/docs',
