@@ -3,8 +3,6 @@ import 'package:appwrite/models.dart';
 import 'package:scialla/appwrite/constants.dart';
 import 'package:flutter/widgets.dart';
 
-import 'dart:convert';
-
 enum AuthStatus {
   uninitialized,
   authenticated,
@@ -38,6 +36,7 @@ class AuthAPI extends ChangeNotifier {
         .setEndpoint(APPWRITE_URL)
         .setProject(APPWRITE_PROJECT_ID)
         .setSelfSigned();
+    account = Account(client);
   }
 
   trigFun() async {

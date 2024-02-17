@@ -30,6 +30,7 @@ export default async ({ req, res, log, error }) => {
         //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
       ]
     );
+    log('fine creazione');
     return res.send('document created');
 
     // error handling
