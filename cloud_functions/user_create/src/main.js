@@ -1,4 +1,4 @@
-import { Client, Databases, Permission, Role } from "appwrite";
+import { Client, Databases, Permission, Role } from 'node-appwrite';
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
@@ -32,7 +32,8 @@ export default async ({ req, res, log, error }) => {
             //return res.json(response); // Return the response as JSON
         }).catch(function (error) {
             console.log(error);
-            return res.status(500).json({ error: 'Internal server error' }); // Return an error response
+            return res.send(`errorre cazzo`);
+            //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
         });
     }
 

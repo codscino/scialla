@@ -50,7 +50,7 @@ class AuthAPI extends ChangeNotifier {
         //body: json.encode({ 'foo': 'bar' }),
         //xasync: false,
         //path: '/',
-        method: 'GET',
+        method: 'POST', //'GET',
         //headers: {'X-Custom-Header': '123'}
       );
       print(execution.responseBody);
