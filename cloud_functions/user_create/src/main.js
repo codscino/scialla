@@ -45,6 +45,7 @@ export default async ({ req, res, log, error }) => {
     });*/
   }
 
+  log('qui ci sei?');
   return res.json({
     motto: 'Build like a team of hundreds_',
     learn: 'https://appwrite.io/docs',
