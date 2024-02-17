@@ -30,7 +30,7 @@ export default async ({ req, res, log, error }) => {
         //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
       ]
     );
-
+    log('fatto')
     // error handling
     promise.then(function (response) {
       log('qui');
