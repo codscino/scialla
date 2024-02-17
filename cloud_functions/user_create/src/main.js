@@ -15,14 +15,14 @@ export default async ({ req, res, log, error }) => {
         // Send a response with the res object helpers
         return res.send(`ciao ${process.env.DOG_NAME}`);
     } else if (req.method === 'POST') {
-      return res.send('funzia?');
-        /*// Create a document in the specified collection
+        /// Create a document in the specified collection
         let promise = databases.createDocument(
             process.env.APPWRITE_DATABASE_ID,
             process.env.APPWRITE_USERINFO_ID,
             {'name': 'Chris', 'surname': 'Evans', 'country': 'Italy'},
-            [     // Admins can update this document
-                Permission.delete(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
+            [   
+                Permission.write(Role.any()),
+                //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
             ]
         );
         
@@ -35,7 +35,7 @@ export default async ({ req, res, log, error }) => {
             console.log(error);
             return res.send(`errorre cazzo`);
             //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
-        });*/
+        });
     }
 
     return res.json({
