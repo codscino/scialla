@@ -30,21 +30,22 @@ export default async ({ req, res, log, error }) => {
         //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
       ]
     );
-    log('fine creazione');
 
     // error handling
     promise.then(function (response) {
+      log('qui');
       console.log(response);
       return res.send('document created');
       //return res.json(response); // Return the response as JSON
     }).catch(function (error) {
+      log('quo');
       console.log(error);
       return res.send('document not created, internal error');
       //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
     });
   }
 
-  log('qui ci sei?');
+  log('qua');
   return res.json({
     motto: 'Build like a team of hundreds_',
     learn: 'https://appwrite.io/docs',
