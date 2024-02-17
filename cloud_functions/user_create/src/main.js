@@ -17,13 +17,13 @@ export default async ({ req, res, log, error }) => {
 
   if (req.method === 'GET') {
     // Send a response with the res object helpers
-    return res.send(`ciao ${process.env.DOG_NAME}`);
+    return res.send(`hello ${process.env.DOG_NAME}`);
   } else if (req.method === 'POST') {
     /// Create a document in the specified collection
     let promise = databases.createDocument(
       process.env.APPWRITE_DATABASE_ID,
       process.env.APPWRITE_USERINFO_ID,
-      {name: 'Chris'},
+      { name: 'Chris' },
       [
         Permission.write(Role.any()),
         //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
@@ -33,11 +33,11 @@ export default async ({ req, res, log, error }) => {
     // error handling
     promise.then(function (response) {
       console.log(response);
-      return res.send(`ce l'abbiamo fatta, forse...`);
+      return res.send('document created');
       //return res.json(response); // Return the response as JSON
     }).catch(function (error) {
       console.log(error);
-      return res.send(`errorre cazzo`);
+      return res.send('document not created, internal erro');
       //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
     });
   }
