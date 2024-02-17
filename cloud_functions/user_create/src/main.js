@@ -16,9 +16,6 @@ export default async ({ req, res, log, error }) => {
   error('Hello, Errors!');
 
   if (req.method === 'GET') {
-    // Send a response with the res object helpers
-    return res.send(`hello ${process.env.DOG_NAME}`);
-  } else if (req.method === 'POST') {
     /// Create a document in the specified collection
     let promise = databases.createDocument(
       process.env.APPWRITE_DATABASE_ID,
@@ -40,6 +37,9 @@ export default async ({ req, res, log, error }) => {
       return res.send('document not created, internal erro');
       //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
     });
+  } else if (req.method === 'POST') {
+    // Send a response with the res object helpers
+    return res.send(`hello ${process.env.DOG_NAME}`);
   }
 
   return res.json({
