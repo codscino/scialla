@@ -1,33 +1,45 @@
-import { Client } from 'node-appwrite';
+import { Client, Databases, Permission, Role } from "appwrite";
 
-// This is your Appwrite function
-// It's executed each time we get a request
+const client = new Client()
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject(process.env.APPWRITE_PROJECT_ID)
+    .setKey(process.env.APPWRITE_API_KEY);
+
+const databases = new Databases(client);
+
 export default async ({ req, res, log, error }) => {
-  // Why not try the Appwrite SDK?
-  //
-  // const client = new Client()
-  //    .setEndpoint('https://cloud.appwrite.io/v1')
-  //    .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-  //    .setKey(process.env.APPWRITE_API_KEY);
 
-  // You can log messages to the console
-  log('Hello, Logs!');
+    log('Hello, Logs!');
 
-  // If something goes wrong, log an error
-  error('Hello, Errors!');
+    if (req.method === 'GET') {
+        // Send a response with the res object helpers
+        return res.send(`ciao ${process.env.DOG_NAME}`);
+    } else if (req.method === 'POST') {
+        // Create a document in the specified collection
+        let promise = databases.createDocument(
+            process.env.APPWRITE_DATABASE_ID,
+            process.env.APPWRITE_USERINFO_ID,
+            {'name': 'Chris', 'surname': 'Evans', 'country': 'Italy'},
+            [     // Admins can update this document
+                Permission.delete(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
+            ]
+        );
+        
+        // error handling
+        promise.then(function (response) {
+            console.log(response);
+            return res.send(`ce l'abbiamo fatta, forse...`);
+            //return res.json(response); // Return the response as JSON
+        }).catch(function (error) {
+            console.log(error);
+            return res.status(500).json({ error: 'Internal server error' }); // Return an error response
+        });
+    }
 
-  // The `req` object contains the request data
-  if (req.method === 'GET') {
-    // Send a response with the res object helpers
-    // `res.send()` dispatches a string back to the client
-    return res.send(`ciao ${process.env.DOG_NAME}`);
-  }
-
-  // `res.json()` is a handy helper for sending JSON
-  return res.json({
-    motto: 'Build like a team of hundreds_',
-    learn: 'https://appwrite.io/docs',
-    connect: 'https://appwrite.io/discord',
-    getInspired: 'https://builtwith.appwrite.io',
-  });
+    return res.json({
+        motto: 'Build like a team of hundreds_',
+        learn: 'https://appwrite.io/docs',
+        connect: 'https://appwrite.io/discord',
+        getInspired: 'https://builtwith.appwrite.io',
+    });
 };
