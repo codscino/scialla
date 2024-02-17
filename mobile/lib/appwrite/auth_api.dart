@@ -46,7 +46,7 @@ class AuthAPI extends ChangeNotifier {
 
     try {
       final execution = await functions.createExecution(
-        functionId: FUN_STARTER,
+        functionId: FUN_USERCREATE,//FUN_STARTER,
         //body: json.encode({ 'foo': 'bar' }),
         //xasync: false,
         //path: '/',
