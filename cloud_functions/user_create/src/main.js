@@ -23,6 +23,7 @@ export default async ({ req, res, log, error }) => {
     const document = await databases.createDocument(
       process.env.APPWRITE_DATABASE_ID,
       process.env.APPWRITE_USERINFO_ID,
+      ID.unique,
       { name: 'Chris' },
       [
         Permission.write(Role.any()),
