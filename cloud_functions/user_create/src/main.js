@@ -20,29 +20,28 @@ export default async ({ req, res, log, error }) => {
     return res.send(`hello ${process.env.DOG_NAME}`);
   } else if (req.method === 'POST') {
     /// Create a document in the specified collection
-    const document = await databases.createDocument(
+    const promise = databases.createDocument(
       process.env.APPWRITE_DATABASE_ID,
       process.env.APPWRITE_USERINFO_ID,
-      'chebllidchehai',
-      {name: 'Chris'},
+      ID.unique(),
+      {},
       [
         Permission.write(Role.any()),
         //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
       ]
     );
     log('fine creazione');
-    return res.send('document created');
 
     // error handling
-    /*promise.then(function (response) {
+    promise.then(function (response) {
       console.log(response);
       return res.send('document created');
       //return res.json(response); // Return the response as JSON
     }).catch(function (error) {
       console.log(error);
-      return res.send('document not created, internal erro');
+      return res.send('document not created, internal error');
       //return res.status(500).json({ error: 'Internal server error' }); // Return an error response
-    });*/
+    });
   }
 
   log('qui ci sei?');
