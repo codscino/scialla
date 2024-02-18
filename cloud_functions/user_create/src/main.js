@@ -34,7 +34,7 @@ export default async ({ req, res, log, error }) => {
         [
           //Permission.write(Role.user(IDINPUT)),
           //Permission.read(Role.user(IDINPUT)),
-          //Permission.write(Role.any()),
+          Permission.write(Role.any()),
           Permission.read(Role.any()),
         ]
       );
