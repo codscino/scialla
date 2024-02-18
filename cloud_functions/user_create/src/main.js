@@ -42,7 +42,7 @@ export default async ({ req, res, log, error }) => {
 
     } catch (err) {
       console.log(err);
-      return res.send('document not created ', err);
+      return res.send('document not created ' + err);
     }
   }
 
