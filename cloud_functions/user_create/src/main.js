@@ -32,8 +32,10 @@ export default async ({ req, res, log, error }) => {
         // name not require could be not written, but at least one other require parameter
         {surname: 'dibba'},
         [
-          Permission.write(Role.user(IDINPUT)),
-          Permission.read(Role.user(IDINPUT)),
+          //Permission.write(Role.user(IDINPUT)),
+          //Permission.read(Role.user(IDINPUT)),
+          Permission.write(Role.any()),
+          Permission.read(Role.any()),
         ]
       );
 
