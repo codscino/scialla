@@ -91,7 +91,8 @@ class _MessagesPageState extends State<MessagesPage> {
               children: [
                 FloatingActionButton(onPressed: () {
                   final authAPI = Provider.of<AuthAPI>(context, listen: false);
-                  authAPI.trigFun();
+                  //authAPI.trigFun();
+                  authAPI.getID();
                 }),
                 authStatus == AuthStatus.authenticated
                     ? Row(

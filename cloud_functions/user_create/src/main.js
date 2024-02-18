@@ -15,6 +15,9 @@ export default async ({ req, res, log, error }) => {
   // If something goes wrong, log an error
   error('Hello, Errors!');
 
+  // Parse the request body to get IDINPUT
+  const { IDINPUT } = JSON.parse(req.body);
+
   if (req.method === 'GET') {
     // Send a response with the res object helpers
     return res.send(`hello ${process.env.DOG_NAME}`);
@@ -25,10 +28,11 @@ export default async ({ req, res, log, error }) => {
         process.env.APPWRITE_DATABASE_ID,
         process.env.APPWRITE_USERINFO_ID,
         ID.unique(),
-        {surname: 'di maio'},
+        // name not require could be not written, but at least one other require parameter
+        {surname: 'dibba'},
         [
-          Permission.write(Role.any()),
-          //Permission.write(Role.user("65cfcc64a2e0faf8ffb8")), // User tu@tu.com can crud this document 
+          Permission.write(Role.user(IDINPUT)),
+          Permission.read(Role.user(IDINPUT)),
         ]
       );
 

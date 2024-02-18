@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:scialla/appwrite/constants.dart';
@@ -39,14 +41,32 @@ class AuthAPI extends ChangeNotifier {
     account = Account(client);
   }
 
+  Future<String> getID() async{
+    try {
+      final user = await account.get();
+      return user.$id;
+    } catch (e) {
+      print(e);
+      return 'da capire';
+    } 
+  }
+
   trigFun() async {
     //functions
     final functions = Functions(client);
 
     try {
+      // Define your IDINPUT here or wherever you get it from
+      String IDINPUT = await getID();
+
+      // Body containing IDINPUT
+      Map<String, dynamic> requestBody = {
+        'IDINPUT': IDINPUT,
+      };
+      
       final execution = await functions.createExecution(
-        functionId: FUN_USERCREATE,//FUN_STARTER,
-        //body: json.encode({ 'foo': 'bar' }),
+        functionId: FUN_USERCREATE, //FUN_STARTER,
+        body: json.encode(requestBody), // Encode the body as JSON
         //xasync: false,
         //path: '/',
         method: 'POST', //'GET',
