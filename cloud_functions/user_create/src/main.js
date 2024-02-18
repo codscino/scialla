@@ -29,7 +29,7 @@ export default async ({ req, res, log, error }) => {
         process.env.APPWRITE_DATABASE_ID,
         process.env.APPWRITE_USERINFO_ID,
         ID.unique(),
-        // name not require could be not written, but at least one other require parameter
+        // name not require could be not written, but at least one other require parameter k
         {surname: 'dibba'},
         [
           Permission.write(Role.user(IDINPUT)),
