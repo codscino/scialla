@@ -44,6 +44,13 @@ class AuthAPI extends ChangeNotifier {
   Future<String> getID() async{
     try {
       final user = await account.get();
+
+      final result = await account.listSessions();
+      print(result.sessions[0].userId);
+
+      print(user.$id);
+
+
       return user.$id;
     } catch (e) {
       print(e);
