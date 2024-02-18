@@ -17,6 +17,7 @@ export default async ({ req, res, log, error }) => {
 
   // Parse the request body to get IDINPUT
   const { IDINPUT } = JSON.parse(req.body);
+  log(IDINPUT);
 
   if (req.method === 'GET') {
     // Send a response with the res object helpers

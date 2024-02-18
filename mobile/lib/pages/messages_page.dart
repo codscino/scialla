@@ -6,7 +6,7 @@ import 'package:appwrite/models.dart';
 import 'package:provider/provider.dart';
 
 class MessagesPage extends StatefulWidget {
-  const MessagesPage({Key? key}) : super(key: key);
+  const MessagesPage({super.key});
 
   @override
   _MessagesPageState createState() => _MessagesPageState();
@@ -91,8 +91,7 @@ class _MessagesPageState extends State<MessagesPage> {
               children: [
                 FloatingActionButton(onPressed: () {
                   final authAPI = Provider.of<AuthAPI>(context, listen: false);
-                  //authAPI.trigFun();
-                  authAPI.getID();
+                  authAPI.trigFun();
                 }),
                 authStatus == AuthStatus.authenticated
                     ? Row(
