@@ -93,6 +93,9 @@ class _MessagesPageState extends State<MessagesPage> {
                   final authAPI = Provider.of<AuthAPI>(context, listen: false);
                   authAPI.trigFun();
                 }),
+                const SizedBox(height: 24),
+                Container(padding: const EdgeInsets.all(10),color: Colors.amber, child:(const Text('Hey'))),
+                const SizedBox(height: 24),
                 authStatus == AuthStatus.authenticated
                     ? Row(
                         children: [
